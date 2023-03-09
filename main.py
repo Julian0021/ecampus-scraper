@@ -23,10 +23,9 @@ while True:
         target_tr = soup.select_one(f'tr:has(td.tabelle1:-soup-contains("{MODCODE}"))')
 
         if target_tr:
-            print("Found")
             children = target_tr.select('*')
-            for child in children:
-                print(child.text.strip())
+            print(f"Found {children[1].text.strip()}")
+            print(f"Grade: {children[3].text.strip()}")
             break
     except:
         pass
