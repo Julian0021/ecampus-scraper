@@ -25,7 +25,14 @@ while True:
         if target_tr:
             children = target_tr.select('*')
             print(f"Found: {children[1].text.strip()}")
+            print(f"Semester: {children[2].text.strip()}")
             print(f"Grade: {children[3].text.strip()}")
+            print(f"Perentage: {children[4].text.strip()}")
+            print(f"State: {children[5].text.strip()}")
+            print(f"ECTS: {children[6].text.strip()}")
+            print(f"Notation: {children[7].text.strip()}")
+            print(f"Try: {children[8].text.strip()}")
+            print(f"Date: {children[9].text.strip()}")
             break
     except:
         pass
