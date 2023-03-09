@@ -20,7 +20,7 @@ while True:
 
         if target_tr:
             children = target_tr.select('*')
-            print(f"Found {children[1].text.strip()}")
+            print(f"Found: {children[1].text.strip()}")
             print(f"Grade: {children[3].text.strip()}")
             break
     except:
