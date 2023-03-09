@@ -27,7 +27,7 @@ while True:
             print(f"Found: {td[1].text.strip()}")
             print(f"Semester: {td[2].text.strip()}")
             print(f"Grade: {td[3].text.strip()}")
-            print(f"Perentage: {td[4].text.strip()}")
+            print(f"Percentage: {td[4].text.strip()}")
             print(f"State: {td[5].text.strip()}")
             print(f"ECTS: {td[6].text.strip()}")
             print(f"Notation: {td[7].text.strip()}")
