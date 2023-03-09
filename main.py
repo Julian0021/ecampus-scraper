@@ -16,6 +16,10 @@ while True:
         response = session.get(url, cookies=cookies)
         soup = BeautifulSoup(response.text, "html.parser")
 
+        if soup.select_one("h1").text.strip() == "Timeout":
+            print("Session expired")
+            break
+
         target_tr = soup.select_one(f'tr:has(td.tabelle1:-soup-contains("{MODCODE}"))')
 
         if target_tr:
