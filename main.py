@@ -4,8 +4,8 @@ import sys
 from bs4 import BeautifulSoup
 import constants
 
-url = constants.url
-cookies = constants.cookies
+url = constants.URL
+cookies = constants.COOKIE
 
 MODCODE = sys.argv[1] if len(sys.argv) > 1 else sys.exit("No module code given")
 
