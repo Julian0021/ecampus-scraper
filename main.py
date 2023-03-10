@@ -7,7 +7,8 @@ import constants
 url = constants.url
 cookies = constants.cookies
 
-MODCODE = sys.argv[1]
+MODCODE = sys.argv[1] if len(sys.argv) > 1 else sys.exit("No module code given")
+
 session = requests.Session()
 session.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.63"})
 
