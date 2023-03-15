@@ -2,15 +2,16 @@ import requests
 import time
 import sys
 from bs4 import BeautifulSoup
-import constants
+import login
 
-url = constants.URL
-cookies = constants.COOKIE
+asi_token = login.asi_token
+cookies = login.cookie
+
+url = f"https://ecampus.thm.de/qisstud/rds?state=notenspiegelStudent&next=list.vm&nextdir=qispos/notenspiegel/student&createInfos=Y&struct=auswahlBaum&nodeID=auswahlBaum%7Cabschluss%3Aabschl%3DBS%2Cstgnr%3D1%7Cstudiengang%3Astg%3DSWT%2Cpversion%3D2019&menu_open=n&expand=0&asi={asi_token}"
 
 MODCODE = sys.argv[1] if len(sys.argv) > 1 else sys.exit("No module code given")
 
 session = requests.Session()
-session.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.63"})
 
 while True:
     try:
