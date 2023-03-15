@@ -25,8 +25,6 @@ login_data = {
 
 response = session.post(login_url, data=login_data, allow_redirects=False)
 
-jsessionid = response.cookies['JSESSIONID']
-
 cookie = {
     "JSESSIONID": response.cookies['JSESSIONID']
 }
@@ -35,7 +33,7 @@ response = session.get('https://ecampus.thm.de/service/rds?state=redirect&sso=qi
 response = session.get(response.headers['Location'], cookies=cookie, allow_redirects=False)
 
 cookie['JSESSIONID'] = response.cookies['JSESSIONID']
-print(f"Found JSESSIONID: {cookie['JSESSIONID']}")
+print(f"Found JSESSIONID: {cookie['JSESSIONID']}") # New JSESSIONID
 response = session.get(response.headers['Location'], cookies=cookie, allow_redirects=False)
 
 asi_token = response.url.split('asi=')[1]
