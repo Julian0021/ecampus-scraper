@@ -4,8 +4,8 @@ import sys
 from bs4 import BeautifulSoup
 import login
 
-cookies, asi_token = login.get_login()
 MODCODE = sys.argv[1] if len(sys.argv) > 1 else sys.exit("No module code given")
+cookies, asi_token = login.get_login()
 
 while True:
     try:
