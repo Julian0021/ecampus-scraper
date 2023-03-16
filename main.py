@@ -13,7 +13,7 @@ while True:
         response = requests.get(url=url, cookies=cookies)
         soup = BeautifulSoup(response.text, "html.parser")
 
-        if soup.select_one("h1").text.strip() == "Timeout":
+        if soup.select_one("h1").text.strip() != "Leistungsübersicht":
             print("Session expired, logging in...")
             cookies, asi_token = login.get_login()
             continue
