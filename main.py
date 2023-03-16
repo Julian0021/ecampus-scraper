@@ -4,10 +4,8 @@ import sys
 from bs4 import BeautifulSoup
 import login
 
-global cookies, asi_token
 cookies, asi_token = login.get_login()
-
-MODCODE = 10000
+MODCODE = sys.argv[1] if len(sys.argv) > 1 else sys.exit("No module code given")
 
 while True:
     try:
