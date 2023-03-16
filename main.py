@@ -4,25 +4,24 @@ import sys
 from bs4 import BeautifulSoup
 import login
 
-asi_token = login.asi_token
-cookies = login.cookie
+global cookies, asi_token
+cookies, asi_token = login.get_login()
 
-url = f"https://ecampus.thm.de/qisstud/rds?state=notenspiegelStudent&next=list.vm&nextdir=qispos/notenspiegel/student&createInfos=Y&struct=auswahlBaum&nodeID=auswahlBaum%7Cabschluss%3Aabschl%3DBS%2Cstgnr%3D1%7Cstudiengang%3Astg%3DSWT%2Cpversion%3D2019&menu_open=n&expand=0&asi={asi_token}"
-
-MODCODE = sys.argv[1] if len(sys.argv) > 1 else sys.exit("No module code given")
-
-session = requests.Session()
+MODCODE = 10000
 
 while True:
     try:
-        response = session.get(url, cookies=cookies)
+        url = f"https://ecampus.thm.de/qisstud/rds?state=notenspiegelStudent&next=list.vm&nextdir=qispos/notenspiegel/student&createInfos=Y&struct=auswahlBaum&nodeID=auswahlBaum%7Cabschluss%3Aabschl%3DBS%2Cstgnr%3D1%7Cstudiengang%3Astg%3DSWT%2Cpversion%3D2019&menu_open=n&expand=0&asi={asi_token}"
+        response = requests.get(url=url, cookies=cookies)
         soup = BeautifulSoup(response.text, "html.parser")
 
         if soup.select_one("h1").text.strip() == "Timeout":
-            print("Session expired")
-            break
+            print("Session expired, logging in...")
+            cookies, asi_token = login.get_login()
+            continue
 
-        target_tr = soup.select_one(f'tr:has(td.tabelle1:-soup-contains("{MODCODE}"))')
+        target_tr = soup.select_one(
+            f'tr:has(td.tabelle1:-soup-contains("{MODCODE}"))')
 
         if target_tr:
             td = target_tr.select('*')
@@ -39,4 +38,3 @@ while True:
     except:
         pass
     time.sleep(5)
-
